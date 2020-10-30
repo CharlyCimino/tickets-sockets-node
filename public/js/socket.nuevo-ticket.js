@@ -8,6 +8,9 @@ socket.on('connect', function () {
 socket.on('disconnect', function () {
 	console.log('Perdida conexion al servidor');
 });
+socket.on('estadoActual', function (resp) {
+	label.text(resp.actual);
+});
 
 $('button').on('click', function () {
 	socket.emit('siguienteTicket', null, function (siguiente) {
