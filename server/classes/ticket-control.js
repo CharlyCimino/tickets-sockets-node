@@ -38,6 +38,10 @@ class TicketControl {
 		return `Ticket ${this.ultimo}`
 	}
 
+	getUltimos4() {
+		return this.ultimos4;
+	}
+
 	atenderTicket(escritorio) {
 		if (this.tickets.length == 0) {
 			return null;
@@ -50,8 +54,7 @@ class TicketControl {
 		this.ultimos4.unshift(ticketAAtender) // Agrega al principio
 
 		if (this.ultimos4.length > 4) {
-			console.log("lala");
-			this.ultimos4.slice(-1, 1); // Borra el ultimo
+			this.ultimos4.splice(-1, 1); // Borra el ultimo
 		}
 
 		this.grabarArchivo();

@@ -10,7 +10,8 @@ io.on('connection', (client) => {
 	})
 
 	client.emit('estadoActual', {
-		actual: ticketControl.getUltimo()
+		actual: ticketControl.getUltimo(),
+		ultimos4: ticketControl.getUltimos4()
 	});
 
 	client.on('atenderTicket', (data, callback) => {
@@ -22,9 +23,12 @@ io.on('connection', (client) => {
 		}
 
 		let ticketAAtender = ticketControl.atenderTicket(data.escritorio);
+
 		callback(ticketAAtender);
 
-		// ACtualizar pantalla
+		client.broadcast.emit('actualizarPantalla', {
+			ultimos4: ticketControl.getUltimos4()
+		});
 	});
 
 });
