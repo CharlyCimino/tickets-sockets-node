@@ -13,4 +13,18 @@ io.on('connection', (client) => {
 		actual: ticketControl.getUltimo()
 	});
 
+	client.on('atenderTicket', (data, callback) => {
+		if (!data.escritorio) {
+			return callback({
+				err: true,
+				msg: "Escritorio necesario"
+			});
+		}
+
+		let ticketAAtender = ticketControl.atenderTicket(data.escritorio);
+		callback(ticketAAtender);
+
+		// ACtualizar pantalla
+	});
+
 });
