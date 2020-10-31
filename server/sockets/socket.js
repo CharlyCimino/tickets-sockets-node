@@ -6,7 +6,6 @@ const ticketControl = new TicketControl();
 io.on('connection', (client) => {
 
 	client.on('siguienteTicket', (data, callback) => {
-		console.log('Server responde');
 		callback(ticketControl.siguiente());
 	})
 
